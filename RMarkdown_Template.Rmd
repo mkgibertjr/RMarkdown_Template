@@ -1,0 +1,82 @@
+---
+title: "Template PDF RMarkdown"
+author: "Myron Keith Gibert Jr"
+date: '2022-11-02'
+output: pdf_document
+header-includes:
+- \usepackage{hyperref}
+- \hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Template PDF RMarkdown},
+    pdfpagemode=FullScreen,
+    }
+toc: TRUE
+---
+
+\thispagestyle{empty}
+\clearpage
+\pagenumbering{arabic} 
+\pagebreak
+
+```{r tinytex, include=FALSE}
+## INSTALLING LATEX FOR RMARKDOWN
+
+#RMarkdown requires LaTex to create pdf documents as an output. More information can be found [here](https://bookdown.org/yihui/rmarkdown/pdf-document.html). Alternatively, output can be set to "html_document" or "word_document". End users may install LaTex by setting the "wanttinytex" variable to FALSE and running the following script:
+
+#Install tinytex to let RMarkdown create a pdf document? Default: wanttinytex <- FALSE
+wanttinytex <- TRUE
+
+if(wanttinytex == TRUE){
+
+if(tinytex:::is_tinytex()==FALSE && wanttinytex == TRUE){
+  if (!require("tinytex")) install.packages("tinytex")
+  tinytex::install_tinytex()
+  tinytex:::install_prebuilt()}
+
+library("tinytex")
+#tlmgr_install("fvextra")
+
+}
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+if (!require("tidyverse")) install.packages("tidyverse")
+library("tidyverse")
+
+if (!require("ggplot2")) install.packages("ggplot2")
+library("ggplot2")
+
+if (!require("tidyverse")) install.packages("tidyverse")
+library("tidyverse")
+
+if (!require("ggthemes")) install.packages("ggthemes")
+library("ggthemes")
+```
+
+# Introduction
+
+# R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+# Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
