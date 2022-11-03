@@ -52,9 +52,6 @@ library("tidyverse")
 if (!require("ggplot2")) install.packages("ggplot2")
 library("ggplot2")
 
-if (!require("tidyverse")) install.packages("tidyverse")
-library("tidyverse")
-
 if (!require("ggthemes")) install.packages("ggthemes")
 library("ggthemes")
 ```
@@ -67,16 +64,27 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
-```
-
-# Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+# My ggplot2 starter script
+
+```{r ggplot starter}
+
+head(mtcars)
+
+p <- ggplot(mtcars,aes(mpg)) + 
+  geom_histogram() + 
+  xlab("mpg") + 
+  ylab(expression("nCars")) + 
+  ggtitle(expression("Distribution of Car gas mileage")) +
+  theme_light() +
+  scale_color_colorblind() +
+  scale_fill_colorblind() +
+  theme(axis.text.x=element_text(size=rel(1.2),angle = 90, vjust = 0.5, hjust = 1),
+        plot.title = element_text(size=rel(1.2), face="bold",hjust = 0.5),
+        legend.position = "none") 
+
+p
+
+```
+
